@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  certbot-service:
+    image: latera/certbot-service
+    container_name: certbot-service
+    restart: unless-stopped
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    environment:
+      CERTBOT_FLAGS: ${CERTBOT_FLAGS}
+      VAULT_ADDR: ${VAULT_ADDR}
+      VAULT_TOKEN: ${VAULT_TOKEN}
+      VAULT_CERT_PATH: ${VAULT_CERT_PATH}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+volumes:
+  certbot-etc:
+  certbot-var:

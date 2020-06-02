@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  certbot-service:
+    image: latera/certbot-service
+    container_name: certbot-service
+    restart: unless-stopped
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - certbot-webroot:/usr/share/letsencrypt
+      # docker socket to run nginx reload in renew hook command
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      HOOK_CMD: ${HOOK_CMD}
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: unless-stopped
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d:ro
+      - certbot-etc:/etc/letsencrypt:ro
+      - certbot-webroot:/usr/share/letsencrypt:ro
+    ports:
+      - 80:80
+      - 443:443
+volumes:
+  certbot-etc:
+  certbot-var:
+  certbot-webroot:
