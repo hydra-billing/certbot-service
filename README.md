@@ -1,7 +1,5 @@
 # Certbot Service
 
-Obtain and renew Let's Encrypt SSL certificates without external cron jobs.
-
 This project extends the official certbot docker image and made with some practices from
 [ketchoop/letsencrypt-to-vault](https://github.com/ketchoop/letsencrypt-to-vault). The key features are:
 
@@ -29,7 +27,7 @@ certbot command.
 1. `VAULT_ADDR` — address of Hashicorp Vault (e.g. `https://vault.example.com:8200`). Non-empty value activates
 saving certificates to Vault.
 1. `VAULT_TOKEN` — access token to Vault.
-1. `VAULT_CERT_PATH` (default `secret/ssl-cert/letsencrypt`) — path for certificates data in Vault.
+1. `VAULT_CERT_PATH` (default `secret/ssl-cert/letsencrypt`) — path to certificates data in Vault.
 1. All other environment variables which certbot or its plugins understand
 (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, etc.).
 
