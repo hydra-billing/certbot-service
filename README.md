@@ -7,11 +7,11 @@ This project extends the official certbot docker image and made with some practi
     No longer need to set up an external cron job for renewal. Just run certbot-service with no arguments and
     it will start built-in renewal cron job for you.
 1. Automatic upload of obtained certificates to Hashicorp Vault.  
-    If you would like, certbot-service could upload all .pem files of a domain to Vault. It will be done for each domain
-    only if its certificate is obtained or renewed.
+    If you would like, certbot-service could upload the content of all .pem files into Vault. It will be done
+    for each domain only if its certificate is changed (obtained or renewed).
 1. Running of custom hook command when renewal is succeeded.  
     Set up the hook command and certbot-service will run it on each renewal is succeeded. For example, you can use
-    this feature to reload web server after certificates are renewed (docker-cli is inside!).
+    this feature to reload web server after certificates are renewed (docker-cli is inside to do it!).
 1. Availability of all certbot DNS plugins.  
     Doesn't matter which way you use to verify your domain. You can use any certbot DNS plugin with certbot-service
     at the same time (webroot, route53, google, etc.)!
@@ -56,6 +56,9 @@ Use docker-compose project from [examples/nginx](examples/nginx).
     docker-compose kill -s SIGHUP nginx
     ```
 
+That's all! You do not need to set up any additional cron job for certificates renewal, certbot-serivce
+will do it for you while it is running.
+
 ### Standalone certbot with route53 DNS plugin and Vault
 
 Use docker-compose project from [examples/standalone](examples/standalone).
@@ -73,3 +76,6 @@ Use docker-compose project from [examples/standalone](examples/standalone).
     ```
     docker-compose run --rm certbot-service certonly --dns-route53 -d example.com
     ```
+
+That's all! You do not need to set up any additional cron job for certificates renewal, certbot-serivce
+will do it for you while it is running.
