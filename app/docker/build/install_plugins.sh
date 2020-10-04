@@ -18,6 +18,8 @@ PLUGINS=(
   "dns-sakuracloud"
 )
 
+CERTBOT_VERSION="$(certbot --version | awk '{print $NF}')"
+
 
 wget -O certbot-${CERTBOT_VERSION}.tar.gz https://github.com/certbot/certbot/archive/v${CERTBOT_VERSION}.tar.gz
 tar xf certbot-${CERTBOT_VERSION}.tar.gz
