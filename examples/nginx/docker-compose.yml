@@ -10,8 +10,7 @@ services:
       - certbot-webroot:/usr/share/letsencrypt
       # docker socket to run nginx reload in renew hook command
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      HOOK_CMD: ${HOOK_CMD}
+    env_file: .env
   nginx:
     image: nginx
     container_name: nginx

@@ -43,13 +43,18 @@ Use docker-compose project from [examples/nginx](examples/nginx).
     docker-compose up -d
     ```
 
-1. Obtain the certificate:
+1. Obtain the certificate for the domain:
 
     ```
-    docker-compose run --rm certbot-service certonly -d example.com
+    docker-compose run --rm certbot-service certonly --email admin@example.com -d example.com
     ```
 
-1. Enable SSL server in `conf.d/default.conf`.
+1. Enable and prepare SSL server config for the domain:
+
+    ```
+    mv conf.d/domain.conf.sample conf.d/domain.conf && sed -i 's/DOMAIN/example.com/g' conf.d/domain.conf
+    ```
+
 1. Reload nginx:
 
     ```
@@ -71,10 +76,10 @@ Use docker-compose project from [examples/standalone](examples/standalone).
     docker-compose up -d
     ```
 
-1. Obtain the certificate:
+1. Obtain the certificate for the domain:
 
     ```
-    docker-compose run --rm certbot-service certonly --dns-route53 -d example.com
+    docker-compose run --rm certbot-service certonly --dns-route53 --email admin@example.com -d example.com
     ```
 
 That's all! You do not need to set up any additional cron job for certificates renewal, certbot-serivce

@@ -7,13 +7,7 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
-    environment:
-      CERTBOT_FLAGS: ${CERTBOT_FLAGS}
-      VAULT_ADDR: ${VAULT_ADDR}
-      VAULT_TOKEN: ${VAULT_TOKEN}
-      VAULT_CERT_PATH: ${VAULT_CERT_PATH}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    env_file: .env
 volumes:
   certbot-etc:
   certbot-var:

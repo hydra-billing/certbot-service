@@ -10,7 +10,7 @@ function mark_certs_for_saving {
         local domain="$(basename "$d")"
         local renew_timestamp="$(stat -c %Y $d)"
 
-        if ((renew_timestamp >= run_timestamp)); then
+        if ((renew_timestamp >= run_timestamp)) && (ls $d/*.pem >/dev/null 2>&1); then
             rm -f $d/vault.svd
             echo "$domain marked for saving in Vault"
         fi
