@@ -27,7 +27,7 @@ certbot command.
 1. `VAULT_ADDR` — address of Hashicorp Vault (e.g. `https://vault.example.com:8200`). Non-empty value activates
 saving certificates to Vault.
 1. `VAULT_TOKEN` — access token to Vault.
-1. `VAULT_CERT_PATH` (default `secret/ssl-cert/letsencrypt`) — path to certificates data in Vault.
+1. `VAULT_CERT_PATH` (default `ssl-cert/letsencrypt`) — path to certificates data in Vault (_KV-V2_ is only supported).
 1. All other environment variables which certbot or its plugins understand
 (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, etc.).
 

@@ -6,7 +6,7 @@ ENV CRON_SCHED="0 */12 * * *"
 ENV HOOK_CMD=""
 ENV VAULT_ADDR=""
 ENV VAULT_TOKEN=""
-ENV VAULT_CERT_PATH="secret/ssl-cert/letsencrypt"
+ENV VAULT_CERT_PATH="ssl-cert/letsencrypt"
 
 COPY app /opt/certbot-service
 

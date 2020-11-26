@@ -44,10 +44,10 @@ function save_cert {
     done
 
     local p_chunks_joined="$(join_array "," "${p_chunks[@]}")"
-    local payload="{$p_chunks_joined}"
+    local payload="{\"data\": {$p_chunks_joined}}"
 
     curl -s -H "X-Vault-Token: $VAULT_TOKEN" -H "Content-Type: application/json" -X POST --fail --show-error \
-        -d "$payload" "$VAULT_ADDR/v1/$VAULT_CERT_PATH/$domain"
+        -d "$payload" "$VAULT_ADDR/v1/secret/data/$VAULT_CERT_PATH/$domain"
 }
 
 
