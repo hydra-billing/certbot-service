@@ -26,7 +26,7 @@ tar xf certbot-${CERTBOT_VERSION}.tar.gz
 
 for plugin in "${PLUGINS[@]}"; do
   cp -r certbot-${CERTBOT_VERSION}/certbot-${plugin} /opt/certbot/src/certbot-${plugin}
-  pip install --constraint /opt/certbot/docker_constraints.txt --no-cache-dir --editable /opt/certbot/src/certbot-${plugin}
+  tools/pip_install.py --no-cache-dir --editable /opt/certbot/src/certbot-${plugin}
 done
 
 rm -rf certbot-${CERTBOT_VERSION}.tar.gz certbot-${CERTBOT_VERSION}
