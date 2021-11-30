@@ -23,7 +23,7 @@ certbot-service could be configured using environment variables, which are:
 1. `CERTBOT_FLAGS` (default `--webroot --webroot-path=/usr/share/letsencrypt`) — options implicitly passed to
 certbot command.
 1. `CRON_SCHED` (default `0 */12 * * *`) — schedule for cron daemon renew job.
-1. `HOOK_CMD` — hook command executed when renewal is succeeded (e.g. `docker kill --signal=SIGHUP nginx`).
+1. `HOOK_CMD` — hook command executed when renewal is succeeded (e.g. `docker exec nginx nginx -s reload`).
 1. `VAULT_ADDR` — address of Hashicorp Vault (e.g. `https://vault.example.com:8200`). Non-empty value activates
 saving certificates to Vault.
 1. `VAULT_TOKEN` — access token to Vault.
